@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1f065660_002D4018_002D457a_002Db5fa_002Dc7ac91e8c3b0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="SinglyLinkedListTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::A56C7B94-EBE1-4886-AEC9-1E624AD61E9A::net5.0::Logic.Tests.SinglyLinkedListTest&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::A56C7B94-EBE1-4886-AEC9-1E624AD61E9A::net5.0::Logic.Tests.DoublyLinkedListTest.Test_Remove_Middle&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::A56C7B94-EBE1-4886-AEC9-1E624AD61E9A::net5.0::Logic.Tests.DoublyLinkedListTest.Test_RemoveAll&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;ProjectFile&gt;A56C7B94-EBE1-4886-AEC9-1E624AD61E9A/f:DoublyLinkedListTest.cs&lt;/ProjectFile&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
