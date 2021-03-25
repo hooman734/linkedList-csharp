@@ -15,7 +15,7 @@ namespace Logic
 
         public override string ToString()
         {
-            var response = string.Empty;
+            var response = "HEAD";
             var iter = _head;
             while (iter != null)
             {

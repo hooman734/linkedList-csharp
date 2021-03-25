@@ -18,7 +18,7 @@ namespace Logic
         
         public override string ToString()
         {
-            var response = string.Empty;
+            var response = "HEAD";
             var iter = _head;
             while (iter != null)
             {
@@ -72,7 +72,7 @@ namespace Logic
                     if (iter.Value.Equals(value))
                     {
                         prev.Next = iter.Next;
-                        iter.Next.Previous = prev;
+                        if (iter.Next != null) iter.Next.Previous = prev;
                     }
 
                     prev = iter;
