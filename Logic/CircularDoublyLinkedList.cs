@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Logic.Interfaces;
+
 
 namespace Logic
 {
-    internal class DoublyNode<T>
+    internal class CircularDoublyNode<T>
     {
-        public DoublyNode<T> Previous { get; set; }
-        public DoublyNode<T> Next { get; set; }
+        public CircularDoublyNode<T> Previous { get; set; }
+        public CircularDoublyNode<T> Next { get; set; }
         public T Value { get; set; }
     }
 
-    public class DoublyLinkedList<T> : ILinkedList<T>
+    public class CircularDoublyLinkedList<T> : ILinkedList<T>
     {
         private DoublyNode<T> _head;
         

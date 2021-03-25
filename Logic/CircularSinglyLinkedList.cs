@@ -1,27 +1,26 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Logic.Interfaces;
 
 namespace Logic
 {
-    internal class DoublyNode<T>
+    internal class CircularSinglyNode<T>
     {
-        public DoublyNode<T> Previous { get; set; }
-        public DoublyNode<T> Next { get; set; }
+        public CircularSinglyNode<T> Next { get; set; }
         public T Value { get; set; }
     }
 
-    public class DoublyLinkedList<T> : ILinkedList<T>
+    public class CircularSinglyLinkedList<T> : ILinkedList<T>
     {
-        private DoublyNode<T> _head;
-        
+        private CircularSinglyNode<T> _head;
+
         public override string ToString()
         {
             var response = "HEAD";
             var iter = _head;
             while (iter != null)
             {
-                response = string.Join(" <-> ",response,  iter.Value);
-                iter = iter.Next;
+                response = string.Join(" -> ",response,  iter.Value);
+                iter = iter.Next as CircularSinglyNode<T>;
             }
             return response;
         }
@@ -30,22 +29,12 @@ namespace Logic
         
         public void Add(T value)
         {
-            var newItem = new DoublyNode<T>
+            var newItem = new CircularSinglyNode<T>
             {
                 Value = value,
-                Next = _head,
-                Previous = null
+                Next = _head
             };
-            if (_head == null)
-            {
-                _head = newItem;
-            }
-            else
-            {
-                _head.Previous = newItem;
-                _head = newItem;
-            }
-
+            _head = newItem;
             Size++;
         }
 
@@ -58,19 +47,17 @@ namespace Logic
             else if (_head.Value.Equals(value))
             {
                 _head = _head.Next;
-                _head.Previous = null;
                 Size--;
             }
             else
             {
                 var iter = _head;
-                DoublyNode<T> prev = null;
+                CircularSinglyNode<T> prev = null;
                 while (iter != null)
                 {
                     if (iter.Value.Equals(value))
                     {
                         prev.Next = iter.Next;
-                        if (iter.Next != null) iter.Next.Previous = prev;
                     }
 
                     prev = iter;
