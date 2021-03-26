@@ -29,7 +29,7 @@ namespace Logic
             return response;
         }
 
-        public int Size { get; private set;  }
+        public int Size { get; private set; }
         
         public void Add(T value)
         {
@@ -37,7 +37,7 @@ namespace Logic
             {
                 Value = value,
                 Next = _head,
-                Previous = null
+                Previous = _head.Previous ?? _head
             };
             if (_head == null)
             {
@@ -45,7 +45,8 @@ namespace Logic
             }
             else
             {
-                _head.Previous = newItem;
+                _head.Next = newItem;
+                if (_head.Previous != null) _head.Previous.Next = newItem;
                 _head = newItem;
             }
 
@@ -60,25 +61,28 @@ namespace Logic
             }
             else if (_head.Value.Equals(value))
             {
-                _head = _head.Next;
-                _head.Previous = null;
+                if (_head.Previous != null) _head.Previous.Next = _head.Next;
+                if (_head.Next != null) _head.Next.Previous = _head.Previous;
                 Size--;
             }
             else
             {
                 var iter = _head;
                 DoublyNode<T> prev = null;
-                while (iter != null)
+                do
                 {
-                    if (iter.Value.Equals(value))
+                    if (iter != null && iter.Value.Equals(value))
                     {
-                        prev.Next = iter.Next;
-                        if (iter.Next != null) iter.Next.Previous = prev;
+                        if (prev != null)
+                        {
+                            prev.Next = iter.Next;
+                            if (iter.Next != null) iter.Next.Previous = prev;
+                        }
                     }
 
                     prev = iter;
-                    iter = iter.Next;
-                }
+                    iter = iter?.Next;
+                } while (iter != _head);
                 
                 Size--;
             }

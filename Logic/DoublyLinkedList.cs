@@ -20,13 +20,13 @@ namespace Logic
             var iter = _head;
             while (iter != null)
             {
-                response = string.Join(" <-> ",response,  iter.Value);
+                response = string.Join(" <@-@> ",response,  iter.Value);
                 iter = iter.Next;
             }
             return response;
         }
 
-        public int Size { get; private set;  }
+        public int Size { get; private set; }
         
         public void Add(T value)
         {
