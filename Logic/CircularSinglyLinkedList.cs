@@ -17,11 +17,12 @@ namespace Logic
         {
             var response = "HEAD";
             var iter = _head;
-            while (iter != null)
+
+            do
             {
-                response = string.Join(" -> ",response,  iter.Value);
-                iter = iter.Next as CircularSinglyNode<T>;
-            }
+                response = string.Join(" -@-> ", response, iter.Value);
+                iter = iter.Next;
+            } while (iter != _head);
             return response;
         }
 
@@ -32,9 +33,9 @@ namespace Logic
             var newItem = new CircularSinglyNode<T>
             {
                 Value = value,
-                Next = _head
+                Next = _head.Next ?? _head,
             };
-            _head = newItem;
+            _head.Next = newItem;
             Size++;
         }
 
@@ -44,16 +45,16 @@ namespace Logic
             {
                 // Do nothing
             }
+            else if (_head.Next == null)
+            {
+                _head = null;
+                Size = 0;
+            }
             else if (_head.Value.Equals(value))
             {
-                _head = _head.Next;
-                Size--;
-            }
-            else
-            {
-                var iter = _head;
-                CircularSinglyNode<T> prev = null;
-                while (iter != null)
+                var iter = _head.Next;
+                var prev = _head;
+                do
                 {
                     if (iter.Value.Equals(value))
                     {
@@ -63,6 +64,25 @@ namespace Logic
                     prev = iter;
                     iter = iter.Next;
                 }
+                while (iter != _head.Next) ;
+                _head = _head.Next;
+                Size--;
+            }
+            else
+            {
+                var iter = _head;
+                CircularSinglyNode<T> prev = null;
+                do
+                {
+                    if (iter.Value.Equals(value))
+                    {
+                        prev.Next = iter.Next;
+                    }
+
+                    prev = iter;
+                    iter = iter.Next;
+                }
+                while (iter != _head) ;
                 
                 Size--;
             }
